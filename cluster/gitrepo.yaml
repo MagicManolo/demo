@@ -1,0 +1,18 @@
+kind: GitRepo
+apiVersion: fleet.cattle.io/v1alpha1
+metadata:
+  name: repoOfRepos
+  namespace: fleet-default
+spec:
+  repo: https://github.com/MagicManolo/demo.git
+  branch: main
+  insecureSkipTLSVerify: false
+  paths:
+  - /repos
+  targets:
+  - clusterSelector:
+      matchExpressions:
+      - key: provider.cattle.io
+        operator: NotIn
+        values:
+        - harvester
